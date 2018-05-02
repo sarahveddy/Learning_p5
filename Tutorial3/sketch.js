@@ -1,25 +1,19 @@
-var gray = 0;
-var diameter = 5;
+var capture;
 
 function setup(){
-  var canvas =  createCanvas(200, 200);
+  createCanvas (200, 200);
   
-  //mousepressed() takes a function
-  //handles mouse presses in the canvas only
-  canvas.mousePressed(incDiameter);
+  //create a capture and set size
+  capture = createCapture(VIDEO);
+  capture.size(200, 200);
+
 }
 
-function draw() {
-  background(gray);
-  ellipse(width/2, height/2, diameter, diameter);
-}
+function draw(){
+  //capture position is drawn at mouseX
+  capture.position(mouseX, 0);
 
-//handles mouse presses in the entire window (including the canvas)
-function mousePressed() {
-  gray = gray + 10;
+  //image is drawn on the canvas, but inverted
+  image(capture, 0, 0, 200, 200);
+  filter(INVERT);
 }
-
-function incDiameter() {
-  diameter = diameter + 5;
-}
-
