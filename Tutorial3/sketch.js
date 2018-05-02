@@ -1,8 +1,11 @@
 var playing = false;
 var video; 
 var playButton;
-
+var h1;
 function setup(){
+  //creates an html element
+  h1 = createElement('h1', 'Watch a Video!');
+
   //creates an html video element, and html button element and attaches a 
   //element specific event listener to the button
   video = createVideo('Resources/mouse.mov');
@@ -26,9 +29,9 @@ function toggleVid(){
   playing = !playing;
 }
 
-function draw(){
+// function draw(){
   
-}
+// }
 
 
 
