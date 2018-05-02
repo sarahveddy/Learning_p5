@@ -59,19 +59,41 @@ var drawImage = function(e){
     e.createCanvas(200, 200);
     e.background('rgba(0,255,0, 0.25)');
     e.loadImage('Images/cat.jpg', e.successCallback, e.failureCallback);
-    //e.loadImage('Images/cat1.jpg', e.successCallback, e.failureCallback);
+    //e.loadImage('Images/noImage.jpg', e.successCallback, e.failureCallback);
   };
   e.successCallback = function(img){
-    e.image(img, 0, 0);
-    e.fill('rgba(0,255,0, 0.25)'ß);
-    e.text('image load success', 0, 100);
+     window.alert("image load success")
+     e.image(img, 50, 50, 100, 100); 
   };
   e.failureCallback = function(img){
-    e.text('image load fail', 0, 100);
+    window.alert("image load fail");
   };
 };
 var drawImageP5 = new p5(drawImage, 'drawImageContainer');
 
+var preloadImage = function(g){
+  var img;
+  g.preload = function(){
+    img = g.loadImage('Images/cat2.jpeg');
+  };
+  g.setup = function(){
+    g.image(img, 0, 0, 100, 100);
+  };
+};
+var preloadImageP5 = new p5(preloadImage, 'preloadImageContainer');
+
+var littleMovingCanvas = function(h){
+  var canvas;
+  h.setup = function(){
+    canvas = h.createCanvas(100, 100);
+    h.background(h.color('hsla(322, 100%, 50%, 0.23)'));
+  };
+
+  h.draw = function(){
+    canvas.position(h.winMouseX, h.winMouseY);
+  };
+};
+var littleMovingCanvasP5 = new p5(littleMovingCanvas/*, 'littleMovingCanvasContainer'*/)
 
 //old stuff
 // var x = 0;
