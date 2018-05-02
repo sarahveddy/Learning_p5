@@ -1,40 +1,35 @@
-var playing = false;
-var video; 
-var playButton;
-var h1;
+var img;
+var canvas;
+
 function setup(){
-  //creates an html element
-  h1 = createElement('h1', 'Watch a Video!');
+  canvas = createCanvas(400, 400);
+  img = createImg('https://vignette.wikia.nocookie.net/studio-ghibli/images/5/53/Totoro.jpg/revision/latest?cb=20180107143036')
 
-  //creates an html video element, and html button element and attaches a 
-  //element specific event listener to the button
-  video = createVideo('Resources/mouse.mov');
-  button = createButton("Play Video!");
-  //mousePressed takes a function as an argument
-  button.mousePressed(toggleVid); 
+  img.position(190, 50);
+  img.size(200, 150);
+
+  canvas.position(300, 50);
+  canvas.mouseOver(uniHide);
+  //
+  canvas.mouseOut(function(){
+    img.show();
+  });
 }
 
-function toggleVid(){
-  if(playing){
-    //pauses vid
-    video.pause();
-    //changes words on button
-    button.html('play');
+function draw(){
+  noStroke();
+  background(220, 180, 200);
+  fill(180, 200, 40);
+  strokeweight(6);
+  stroke(180, 100, 240);
+  for (var i = 0; i < width; i += 15){
+    line( i, 0, i, height);
   }
-  else{
-    //allows the video to loop
-    video.loop();
-    button.html('pause');
-  }
-  playing = !playing;
 }
 
-// function draw(){
-  
-// }
-
-
-
+function uniHide(){
+  img.hide();
+}
 
 
 
