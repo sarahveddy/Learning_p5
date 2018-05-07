@@ -1,7 +1,7 @@
 
 var add = function(a){
   a.setup = function(){
-    a.createCanvas(600, 600);
+    var canvas = a.createCanvas(600, 600);
   };
   a.draw = function(){
     a.background(a.color('yellow'));
