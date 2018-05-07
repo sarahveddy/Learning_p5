@@ -33,6 +33,7 @@ function Mover(){
     this.velocity.add(this.acceleration);
     this.velocity.limit(10);
     this.location.add(this.velocity);
+    
   };
   this.display = function(){
     noStroke();
