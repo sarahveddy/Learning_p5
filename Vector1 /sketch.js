@@ -2,14 +2,15 @@ var canvasWidth;
 var canvasHeight; 
 var mover;
 function setup(){
-  canvasWidth = 600;
-  canvasHeight = 600;
+  canvasWidth = windowWidth;
+  canvasHeight = windowHeight;
   createCanvas(canvasWidth, canvasHeight);
   background(color('yellow'));
   mover = new Mover();
 }
 
 function draw(){
+  // background(color('yellow'));
   mover.update();
   mover.checkEdges();
   mover.display();
@@ -17,11 +18,20 @@ function draw(){
 
 }
 
+// function mouseMoved(){
+//   mover.velocity = createVector(mouseX, mouseY);
+// }
+
 function Mover(){
   this.location = createVector(canvasWidth/2, canvasHeight/2);
-  this.velocity = createVector(random(-2, 2), (-2, 2));
+  this.velocity = createVector(0, 0);
+  this.acceleration = createVector(-0.001, 0.01);
+  this.velocity.limit(10);
 
   this.update = function(){
+    this.acceleration = p5.Vector.random2D();
+    this.velocity.add(this.acceleration);
+    this.velocity.limit(10);
     this.location.add(this.velocity);
   };
   this.display = function(){
@@ -33,7 +43,7 @@ function Mover(){
     if(this.location.x > canvasWidth){
       this.location.x = 0;
     }
-    else if(this.location.y < 0){
+    else if(this.location.x < 0){
       this.location.x = canvasWidth;
     }
     
